@@ -83,11 +83,6 @@ function getIntrospectionURL(pageURL) {
   pageDocument.async = false;
   pageDocument.load(pageURL);
 
-  //logError('getIntrospectionURL', 'LEVI!');
-  //var pageDocument = document.open();
-  //var pageDocument = Document.open(pageURL);
-  //logError('getIntrospectionURL', 'VANYA!');
-
   // Check if any link nodes exist
   var linkNodes = pageDocument.getElementsByTagName('link');
   if (linkNodes.length == 0) {

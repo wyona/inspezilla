@@ -13,11 +13,8 @@ function runInspezilla() {
     var features = 'chrome,dialog=no';
     // NOTE: 'urlbar' is being set within src/mozilla/xpfe/browser/resources/content/navigator.xul or chrome://navigator/content/navigator.xul
     var argument1 = document.getElementById('urlbar').value; // window.location.href; // window.location.protocol + '//' + window.location.host + window.location.pathname;
-    var argument2 = document.getElementsByTagName('browser');
-    //var argument2 = document.getElementsByTagName('window');
-    //var argument2 = document.getElementsByTagName('link');
 
-    window.openDialog(url, type, features, argument1, argument2);
+    window.openDialog(url, type, features, argument1);
     return;
 }
 
