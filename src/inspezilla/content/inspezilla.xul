@@ -79,6 +79,17 @@ function doIntrospection() {
         boxEl.appendChild(buttonEl3);
 
 
+
+        var browserEl = document.createElement('browser');
+        browserEl.setAttribute("id", "browserWindow");
+        browserEl.setAttribute("src", pageURL);
+        browserEl.setAttribute("flex", "100");
+        var browserBoxEl = document.getElementById('browserBox');
+        //browserBoxEl.appendChild(browserEl);
+        browserBoxEl.appendChild(buttonEl3);
+
+
+
         //var textEl1 = document.createElement('description');
         //textEl1.appendChild(document.createTextNode(urlResolvedEdit));
         //boxEl.appendChild(textEl1);
@@ -99,9 +110,24 @@ function doIntrospection() {
 <script>
     var textboxElement = document.getElementById('URLtextbox');
     textboxElement.setAttribute('value', window.arguments[0]);
+
+
+    /*logError('HUGO', window.arguments[1].length);*/
+    var browser = window.arguments[1][0];
+    var browser2 = window.arguments[1][1];
+    /*logError('HUGO', browser.getAttribute("src"));*/
+    /*logError('HUGO', browser2.getAttribute("src"));*/
+
+
 </script>
 <button label="Introspect" onclick="doIntrospection()"/>
 </hbox>
+
+<vbox id="browserBox" width="50">
+<!--
+LEVI
+-->
+</vbox>
 
 <vbox id="introspectionDocView" width="30">
 <!--
@@ -115,5 +141,9 @@ function doIntrospection() {
 </vbox>
 
 </vbox>
+
+<!--
+<browser id="mybrowser" src="http://www.cnn.com" flex="100"/>
+-->
 
 </window>
