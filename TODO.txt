@@ -1,0 +1,15 @@
+T O D O
+=======
+
+
+* Better GUI ( --> inspezilla.xul)
+
+* Inspezilla should also work with regular HTML (not just XHTML) ( --> introspection.js)
+
+* Complete URL resolving ( --> introspection.js)
+
+* Remove hardcoded generation of Edit, Create and Search button ( --> inspezilla.xul)
+
+* Overlay the bottom of Mozilla (beside Tools menu) ( --> inspezillaOverlay.xul)
+
+* Inspezilla doesn't work with Firefox

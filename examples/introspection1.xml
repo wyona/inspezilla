@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<introspection xmlns:atom="http://purl.org/atom/ns#" xmlns="http://purl.org/atom/ns#">
+  <create-entry>create-entry1.html</create-entry>
+  <search-entries>search-entries1.html</search-entries>
+  <edit-entry>edit-entry1.html</edit-entry>
+</introspection>

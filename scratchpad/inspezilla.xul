@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<box align="center">
+<button label="Hello Inspezilla" onclick="alert('Introspection is great')"/>
+</box>
+
+<browser id="browserWindow" src="../examples/index1.html" flex="100"/>
+</window>

@@ -1,0 +1,17 @@
+C R E D I T S
+=============
+
+
+* Michael Wechner for original code (http://www.wyona.com/people/michael-wechner/index.html)
+
+* Guido Wesdorp and Kit Blake for help on JavaScript
+
+* Paul Everitt for inspiration re Twingle
+
+* Manos Batsis for the Sarissa XML library
+
+* The Atom Community for inspiration re Introspection
+
+* The Mozilla Community for Mozilla
+
+* Everyone else for being friendly

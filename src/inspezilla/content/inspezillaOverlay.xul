@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!-- This is the overlay that adds "Inspezilla" to the menu of the Mozilla browser. -->
+
+<overlay id="inspezillaOverlay"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script>
+
+function runInspezilla() {
+    var url = 'chrome://inspezilla/content/inspezilla.xul';
+    var type = '_blank';
+    var features = 'chrome,dialog=no';
+    // NOTE: 'urlbar' is being set within src/mozilla/xpfe/browser/resources/content/navigator.xul or chrome://navigator/content/navigator.xul
+    var argument1 = document.getElementById('urlbar').value; // window.location.href; // window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+    window.openDialog(url, type, features, argument1);
+    return;
+}
+
+</script>
+
+<!-- NOTE: see content/chatzilla/chatzillaOverlay.xul -->
+
+<menupopup id="taskPopup">
+
+  <menuseparator />
+  <menuitem
+        id          = "inspezilla_launch"
+        label       = "Inspezilla"
+        oncommand   = "runInspezilla();" />
+
+
+</menupopup>
+
+</overlay>

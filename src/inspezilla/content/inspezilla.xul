@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+
+<!--
+/*
+ * Copyright 2004 Michael Wechner
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+-->
+
+<!--
+/**
+ * @author Michael Wechner
+ * @version $Id: inspezilla.xul,v 1.16 2004/03/07 23:31:56 michi Exp $
+ */
+-->
+
+<!-- NOTE: This CSS defines the generic layout of this window. -->
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  title="Inspezilla - Introspection is great"
+  width="640"
+  height="480"
+>
+
+<script type="application/x-javascript" src="chrome://inspezilla/content/sarissa.js"/>
+<script type="application/x-javascript" src="chrome://inspezilla/content/introspection.js"/>
+
+<script>
+function doIntrospection() {
+    var pageURL = document.getElementById('URLtextbox').value;
+    logDebug('doIntrospection', "Introspect: " + pageURL);
+    var introspectionURL = getIntrospectionURL(pageURL);
+    if (introspectionURL != null) {
+        logDebug('doIntrospection', "Introspection URL: " + introspectionURL);
+        var introspectionParameters = new loadIntrospection(introspectionURL);
+        logDebug('doIntrospection', "Search entries: " + introspectionParameters.getVariable('search-entries'));
+        logDebug('doIntrospection', "Edit entry: " + introspectionParameters.getVariable('edit-entry'));
+        logDebug('doIntrospection', "Create entry: " + introspectionParameters.getVariable('create-entry'));
+
+        var buttonEl1 = document.createElement('button');
+        buttonEl1.setAttribute("label", "Edit Entry");
+        var urlEdit = introspectionParameters.getVariable('edit-entry');
+        var urlResolvedEdit = resolveURL(pageURL, urlEdit);
+        var functionCallEdit = "window.openDialog('" + urlResolvedEdit + "', '_blank', 'dialog=no')";
+        buttonEl1.setAttribute("onclick", functionCallEdit);
+
+        var buttonEl2 = document.createElement('button');
+        buttonEl2.setAttribute("label", "Create Entry");
+        //buttonEl2.setAttribute("width", "30");
+        var urlCreate = introspectionParameters.getVariable('create-entry');
+        var urlResolvedCreate = resolveURL(pageURL, urlCreate);
+        var functionCallCreate = "window.openDialog('" + urlResolvedCreate + "', '_blank', 'dialog=no')";
+        buttonEl2.setAttribute("onclick", functionCallCreate);
+
+        var buttonEl3 = document.createElement('button');
+        buttonEl3.setAttribute("label", "Search Entries");
+        var urlSearch = introspectionParameters.getVariable('search-entries');
+        var urlResolvedSearch = resolveURL(pageURL, urlSearch);
+        var functionCallSearch = "window.openDialog('" + urlResolvedSearch + "', '_blank', 'dialog=no')";
+        buttonEl3.setAttribute("onclick", functionCallSearch);
+
+        var boxEl = document.getElementById('introspectionDocView');
+        boxEl.appendChild(buttonEl1);
+        boxEl.appendChild(buttonEl2);
+        boxEl.appendChild(buttonEl3);
+
+
+        //var textEl1 = document.createElement('description');
+        //textEl1.appendChild(document.createTextNode(urlResolvedEdit));
+        //boxEl.appendChild(textEl1);
+    } else {
+        var boxEl = document.getElementById('introspectionDocView');
+        var textEl1 = document.createElement('description');
+        textEl1.appendChild(document.createTextNode('No introspection link found! NOTE: Inspezilla currently works only with XHTML!'));
+        boxEl.appendChild(textEl1);
+    }
+}
+</script>
+
+<vbox debug="false">
+
+<hbox>
+<!-- NOTE: see other textbox examples within src/mozilla/xpfe/browser/resources/content/navigator.xul -->
+<textbox id="URLtextbox" size="65"/>
+<script>
+    var textboxElement = document.getElementById('URLtextbox');
+    textboxElement.setAttribute('value', window.arguments[0]);
+</script>
+<button label="Introspect" onclick="doIntrospection()"/>
+</hbox>
+
+<vbox id="introspectionDocView" width="30">
+<!--
+<script>
+    var boxElement = document.getElementById('introspectionDocView');
+    var textElement = document.createElement('description');
+    textElement.appendChild(document.createTextNode(window.arguments[0]));
+    boxElement.appendChild(textElement);
+</script>
+-->
+</vbox>
+
+</vbox>
+
+</window>

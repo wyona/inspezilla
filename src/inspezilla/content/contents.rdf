@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <!-- list all the packages being supplied -->
+  <RDF:Seq about="urn:mozilla:package:root">
+    <RDF:li resource="urn:mozilla:package:inspezilla"/>
+  </RDF:Seq>
+
+  <!-- package information -->
+  <RDF:Description about="urn:mozilla:package:inspezilla"
+        chrome:displayName="Inspezilla"
+        chrome:author="Michael Wechner"
+        chrome:description="Introspection"
+        chrome:name="inspezilla">
+  </RDF:Description>
+
+  <!-- overlay information -->
+  <!-- NOTE: see content/chatzilla/contents.rdf -->
+  <RDF:Seq about="urn:mozilla:overlays">
+    <RDF:li resource="chrome://communicator/content/tasksOverlay.xul" />
+  </RDF:Seq>
+
+  <RDF:Seq about="chrome://communicator/content/tasksOverlay.xul">
+    <RDF:li>chrome://inspezilla/content/inspezillaOverlay.xul</RDF:li>
+  </RDF:Seq>
+
+</RDF:RDF>
+

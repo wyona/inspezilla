@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<project default="xpi" basedir=".">
+
+<target name="init">
+  <echo message="INFO: Init"/>
+
+  <property file="build.properties"/>
+
+  <property name="mozilla.chrome.dir" value="/home/USERNAME/build/mozilla-1.6/chrome"/>
+
+  <tstamp>
+    <format property="time.stamp" pattern="yyyyMMddhhmmss"/>
+  </tstamp>
+</target>
+
+<target name="jar" description="Builds JAR">
+  <echo>INFO: Builds JAR</echo>
+  <jar jarfile="src/inspezilla.jar" basedir="src/inspezilla"/>
+</target>
+
+<target name="xpi" description="Builds XPI" depends="jar">
+  <echo>INFO: Builds XPI</echo>
+  <zip zipfile="inspezilla.xpi" basedir="src" includes="inspezilla.jar,install.js"/>
+  <delete file="src/inspezilla.jar"/>
+</target>
+
+<target name="install-jar" description="Install JAR" depends="init,jar">
+  <echo>INFO: Builds JAR</echo>
+  <copy file="src/inspezilla.jar" todir="${mozilla.chrome.dir}"/>
+  <delete file="src/inspezilla.jar"/>
+  <echo>NOTE: Please restart Mozilla</echo>
+</target>
+
+<target name="snapshot-src" description="Builds a source snapshot for developers" depends="init">
+  <echo>INFO: Builds a source snapshot for developers</echo>
+
+  <echo>INFO: ${time.stamp}, ${basedir}</echo>
+
+  <mkdir dir="dist/inspezilla-src-${time.stamp}"/>
+  <copy todir="dist/inspezilla-src-${time.stamp}">
+    <fileset dir=".">
+      <exclude name="build.properties"/>
+      <exclude name="dist/**"/>
+    </fileset>
+  </copy>
+
+  <tar tarfile="dist/inspezilla-src-${time.stamp}.tar" basedir="dist"/>
+  <gzip zipfile="dist/inspezilla-src-${time.stamp}.tar.gz" src="dist/inspezilla-src-${time.stamp}.tar"/>
+  <delete file="dist/inspezilla-src-${time.stamp}.tar"/>
+</target>
+
+</project>
